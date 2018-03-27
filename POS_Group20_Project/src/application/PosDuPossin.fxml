@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -15,18 +16,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.POSController">
    <children>
-      <Label layoutX="337.0" layoutY="391.0" text="Tax" />
-      <Label layoutX="337.0" layoutY="425.0" text="Subtotal" />
-      <Label layoutX="339.0" layoutY="461.0" text="Total" />
       <Label alignment="CENTER" layoutX="234.0" layoutY="14.0" text="Du Poisson">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
       <Label layoutX="467.0" layoutY="68.0" text="Order" />
-      <TextField editable="false" layoutX="413.0" layoutY="385.0" prefHeight="31.0" prefWidth="222.0" />
-      <TextField editable="false" layoutX="413.0" layoutY="420.0" prefHeight="31.0" prefWidth="222.0" />
-      <TextField editable="false" layoutX="413.0" layoutY="455.0" prefHeight="31.0" prefWidth="222.0" />
       <HBox layoutX="336.0" layoutY="335.0" prefHeight="30.0" prefWidth="300.0" spacing="5.0">
          <children>
             <Button mnemonicParsing="false" onAction="#handleTotal" prefHeight="40.0" prefWidth="100.0" text="Total" />
@@ -57,7 +52,7 @@
             <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Sea Cucumber" />
          </children>
       </VBox>
-      <TableView layoutX="336.0" layoutY="90.0" prefHeight="235.0" prefWidth="300.0">
+      <TableView fx:id="orderTable" layoutX="336.0" layoutY="90.0" prefHeight="235.0" prefWidth="300.0">
         <columns>
           <TableColumn fx:id="itemColumn" prefWidth="75.0" text="Item" />
           <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
@@ -66,5 +61,19 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <VBox alignment="CENTER_RIGHT" layoutX="346.0" layoutY="384.0" prefHeight="100.0" prefWidth="70.0" spacing="15.0">
+         <children>
+            <Label text="Subtotal" />
+            <Label text="Tax" />
+            <Label text="Total" />
+         </children>
+      </VBox>
+      <VBox layoutX="436.0" layoutY="383.0" prefHeight="100.0" prefWidth="200.0" spacing="4.0">
+         <children>
+            <TextField fx:id="subtotalField" editable="false" prefHeight="31.0" prefWidth="222.0" />
+            <TextField fx:id="taxField" editable="false" prefHeight="31.0" prefWidth="222.0" />
+            <TextField fx:id="totalField" editable="false" prefHeight="31.0" prefWidth="222.0" />
+         </children>
+      </VBox>
    </children>
 </Pane>
