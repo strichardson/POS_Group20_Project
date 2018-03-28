@@ -1,7 +1,7 @@
 package application;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -46,13 +46,28 @@ public class POSController {
 	
 	@FXML
 	private void handleTotal(){
-		List<Number> priceData = new ArrayList<>();
-		int itemIndex = orderTable.getSelectionModel().getSelectedIndex();
-		double total = 0.0;
+		ArrayList<Number> priceData = new ArrayList<>();
+		DecimalFormat df2 = new DecimalFormat("#.00");
+		double subtotal = 0.0, tax = 0.0, total = 0.0;
+		
+		// Calculating subtotal - store all price values in an array list
 		for(Item item : orderTable.getItems()){
 			priceData.add(priceColumn.getCellObservableValue(item).getValue());
 		}
+		// Add together prices in the array list
+		for(int i = 0; i < priceData.size(); i++){
+			subtotal += (double) priceData.get(i);
+		}
 		
+		// Calculating tax
+		tax = subtotal * 0.13;
+		
+		// Calculating total
+		total = subtotal + tax;
+		
+		subtotalField.setText(df2.format(subtotal));
+		taxField.setText(df2.format(tax));
+		totalField.setText(df2.format(total));
 	}
 	
 	@FXML
@@ -73,12 +88,21 @@ public class POSController {
 	
 	@FXML
 	private void handleReset(){
-		orderTable.getItems().clear();
+		if(!orderTable.getItems().isEmpty()){
+			orderTable.getItems().clear();
+		}
+		else{
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.initOwner(mainApp.getPrimaryStage());
+			alert.setTitle("Table Empty");
+			alert.setHeaderText("Table is Empty");
+			alert.setContentText("Table is already empty.");
+			alert.showAndWait();
+		}
 	}
 	
 	@FXML
 	private void handleReceipt(){
-		
-		
+		mainApp.showReceipt();
 	}
 }

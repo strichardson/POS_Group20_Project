@@ -3,8 +3,10 @@ package application;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
 
@@ -67,7 +69,21 @@ public class Main extends Application {
 	 * Opens receipt pane
 	 */
 	public void showReceipt(){
-		
+		try{
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("ReceiptPane.fxml"));
+			AnchorPane pane = (AnchorPane) loader.load();
+			
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Receipt");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			Scene scene = new Scene(pane);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public ObservableList<Item> getOrderData(){

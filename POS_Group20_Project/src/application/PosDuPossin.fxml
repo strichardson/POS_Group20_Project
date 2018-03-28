@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.POSController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.POSController">
    <children>
       <Label alignment="CENTER" layoutX="234.0" layoutY="14.0" text="Du Poisson">
          <font>
@@ -22,7 +22,7 @@
          </font>
       </Label>
       <Label layoutX="467.0" layoutY="68.0" text="Order" />
-      <HBox layoutX="336.0" layoutY="335.0" prefHeight="30.0" prefWidth="300.0" spacing="5.0">
+      <HBox layoutX="375.0" layoutY="335.0" prefHeight="31.0" prefWidth="306.0" spacing="5.0">
          <children>
             <Button mnemonicParsing="false" onAction="#handleTotal" prefHeight="40.0" prefWidth="100.0" text="Total" />
             <Button mnemonicParsing="false" onAction="#handleDeleteItem" prefHeight="40.0" prefWidth="100.0" text="Delete" />
@@ -30,29 +30,29 @@
             <Button mnemonicParsing="false" onAction="#handleReceipt" prefHeight="40.0" prefWidth="100.0" text="Receipt" />
          </children>
       </HBox>
-      <VBox layoutX="14.0" layoutY="89.0" prefHeight="263.0" prefWidth="147.0" spacing="10.0">
+      <VBox layoutX="14.0" layoutY="89.0" prefHeight="263.0" prefWidth="160.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Jellied Eels" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Monkfish" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Deep Fried Pomfret" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Marinated Swordfish" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Tuna" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Salmon Roe" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Haddock" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Jellied Eels" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Monkfish" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Deep Fried Pomfret" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Marinated Swordfish" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Tuna" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Salmon Roe" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Haddock" />
          </children>
       </VBox>
-      <VBox layoutX="172.0" layoutY="89.0" prefHeight="277.0" prefWidth="147.0" spacing="10.0">
+      <VBox layoutX="186.0" layoutY="89.0" prefHeight="277.0" prefWidth="160.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Lobster Bisque" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Crab Cake" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Snapper" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Deep Fried Calamari" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Takoyaki" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Scallops" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Sea Cucumber" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Lobster Bisque" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Crab Cake" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Snapper" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Deep Fried Calamari" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Takoyaki" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Scallops" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Sea Cucumber" />
          </children>
       </VBox>
-      <TableView fx:id="orderTable" layoutX="336.0" layoutY="90.0" prefHeight="235.0" prefWidth="300.0">
+      <TableView fx:id="orderTable" layoutX="375.0" layoutY="89.0" prefHeight="235.0" prefWidth="306.0">
         <columns>
           <TableColumn fx:id="itemColumn" prefWidth="75.0" text="Item" />
           <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
@@ -61,18 +61,18 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <VBox alignment="CENTER_RIGHT" layoutX="346.0" layoutY="384.0" prefHeight="100.0" prefWidth="70.0" spacing="15.0">
+      <VBox alignment="CENTER_RIGHT" layoutX="397.0" layoutY="385.0" prefHeight="100.0" prefWidth="70.0" spacing="15.0">
          <children>
             <Label text="Subtotal" />
             <Label text="Tax" />
             <Label text="Total" />
          </children>
       </VBox>
-      <VBox layoutX="436.0" layoutY="383.0" prefHeight="100.0" prefWidth="200.0" spacing="4.0">
+      <VBox layoutX="481.0" layoutY="384.0" prefHeight="100.0" prefWidth="200.0" spacing="4.0">
          <children>
-            <TextField fx:id="subtotalField" editable="false" prefHeight="31.0" prefWidth="222.0" />
-            <TextField fx:id="taxField" editable="false" prefHeight="31.0" prefWidth="222.0" />
-            <TextField fx:id="totalField" editable="false" prefHeight="31.0" prefWidth="222.0" />
+            <TextField fx:id="subtotalField" alignment="CENTER_RIGHT" editable="false" prefHeight="31.0" prefWidth="222.0" />
+            <TextField fx:id="taxField" alignment="CENTER_RIGHT" editable="false" prefHeight="31.0" prefWidth="222.0" />
+            <TextField fx:id="totalField" alignment="CENTER_RIGHT" editable="false" prefHeight="31.0" prefWidth="222.0" />
          </children>
       </VBox>
    </children>
