@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class POSController {
@@ -28,10 +30,15 @@ public class POSController {
 	// Reference to main application
 	private Main mainApp;
 	
-	// Constructor
+	/**
+	 * Constructor - Called before initialize() method
+	 */
 	public POSController(){
 	}
 	
+	/**
+	 * Initializes controller class - called once fxml file has been loaded
+	 */
 	@FXML
 	private void initialize(){
 		itemColumn.setCellValueFactory(cellData -> cellData.getValue().itemProperty());
@@ -50,7 +57,7 @@ public class POSController {
 		DecimalFormat df2 = new DecimalFormat("#.00");
 		double subtotal = 0.0, tax = 0.0, total = 0.0;
 		
-		// Calculating subtotal - store all price values in an array list
+		// Calculating sub-total - store all price values in an array list
 		for(Item item : orderTable.getItems()){
 			priceData.add(priceColumn.getCellObservableValue(item).getValue());
 		}
@@ -75,6 +82,7 @@ public class POSController {
 		int itemIndex = orderTable.getSelectionModel().getSelectedIndex();
 		if(itemIndex >= 0){
 			orderTable.getItems().remove(itemIndex);
+			handleTotal();
 		}
 		else{
 			Alert alert = new Alert(AlertType.WARNING);
@@ -90,6 +98,9 @@ public class POSController {
 	private void handleReset(){
 		if(!orderTable.getItems().isEmpty()){
 			orderTable.getItems().clear();
+			subtotalField.clear();
+			taxField.clear();
+			totalField.clear();
 		}
 		else{
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -103,6 +114,21 @@ public class POSController {
 	
 	@FXML
 	private void handleReceipt(){
-		mainApp.showReceipt();
+		if(!orderTable.getItems().isEmpty()){
+			mainApp.showReceipt(orderTable);
+		}
+		else{
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.initOwner(mainApp.getPrimaryStage());
+			alert.setTitle("Table Empty");
+			alert.setHeaderText("Table is Empty");
+			alert.setContentText("Table is already empty.");
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	private void handleItemPrint(){
+		
 	}
 }

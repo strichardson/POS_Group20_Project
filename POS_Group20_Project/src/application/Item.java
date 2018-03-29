@@ -25,11 +25,22 @@ public class Item {
 		return price.get();
 	}
 	
+	public void setItemProperty(String item){
+		this.item.set(item);
+	}
 	public StringProperty itemProperty(){
 		return item;
+	}
+	
+	public void setPriceProperty(double price){
+		this.price.set(price);
 	}
 	public DoubleProperty priceProperty(){
 		return price;
 	}
 	
+	@Override
+	public String toString(){
+		return item.get() + "\t\t $" + price.get();
+	}
 }

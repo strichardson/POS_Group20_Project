@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
@@ -15,33 +16,28 @@ import javafx.fxml.FXMLLoader;
 public class Main extends Application {
 	private Stage primaryStage;
 	private Pane root;
+	
+	
 	private ObservableList<Item> orderData = FXCollections.observableArrayList();
 	
+	/**
+	 * Constructor
+	 */
 	public Main(){
-		orderData.add(new Item("Jellied Eels", 20.0));
-		orderData.add(new Item("Takoyaki", 15.0));
+		// Sample data
+		orderData.add(new Item("Jellied Eels", 50.0));
+		orderData.add(new Item("Takoyaki", 25.0));
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void start(Stage primaryStage){
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Du Poisson");
 		initRoot();
 	}
-	/*
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-			Pane root = (Pane)FXMLLoader.load(getClass().getResource("PosDuPossin.fxml"));
-			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	*/
 	
 	/**
 	 * Initialize root pane
@@ -68,17 +64,23 @@ public class Main extends Application {
 	/**
 	 * Opens receipt pane
 	 */
-	public void showReceipt(){
+	public void showReceipt(TableView<Item> orders){
 		try{
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("ReceiptPane.fxml"));
-			AnchorPane pane = (AnchorPane) loader.load();
+			AnchorPane page = (AnchorPane) loader.load();
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Receipt");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			Scene scene = new Scene(pane);
+			dialogStage.initModality(Modality.NONE);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
             dialogStage.setScene(scene);
+            /*
+            ReceiptController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.printReceipt(orders);
+            */
             dialogStage.showAndWait();
 		}
 		catch(Exception e){

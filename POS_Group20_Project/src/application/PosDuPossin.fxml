@@ -32,23 +32,23 @@
       </HBox>
       <VBox layoutX="14.0" layoutY="89.0" prefHeight="263.0" prefWidth="160.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Jellied Eels" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Monkfish" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Deep Fried Pomfret" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Marinated Swordfish" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Tuna" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Salmon Roe" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Haddock" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Jellied Eels" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Monkfish" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Deep Fried Pomfret" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Marinated Swordfish" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Tuna" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Salmon Roe" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Haddock" />
          </children>
       </VBox>
       <VBox layoutX="186.0" layoutY="89.0" prefHeight="277.0" prefWidth="160.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Lobster Bisque" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Crab Cake" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Snapper" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Deep Fried Calamari" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Takoyaki" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Scallops" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Lobster Bisque" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Crab Cake" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Snapper" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Deep Fried Calamari" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Takoyaki" />
+            <Button mnemonicParsing="false" onAction="#handleItemPrint" prefHeight="27.0" prefWidth="160.0" text="Scallops" />
             <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Sea Cucumber" />
          </children>
       </VBox>
