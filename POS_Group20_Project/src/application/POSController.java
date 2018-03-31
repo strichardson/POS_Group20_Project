@@ -132,3 +132,6 @@ public class POSController {
 		
 	}
 }
+
+//@FXML 
+//private void handle
