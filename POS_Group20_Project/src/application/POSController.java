@@ -10,6 +10,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 
 public class POSController {
 	@FXML
@@ -24,7 +28,31 @@ public class POSController {
 	private TextField taxField;
 	@FXML
 	private TextField totalField;
-	
+	@FXML
+	private Button btnAddItem;
+	@FXML
+	private Button exitApp;
+	@FXML
+	private ComboBox<String> menuItemsBox;
+	//populates the combo box
+	ObservableList<String> menuItemList = FXCollections
+				.observableArrayList(
+						"Jellied eels",
+						"Monkfish",
+						"Deep fried pomfret",
+						"Marinated swordfish",
+						"Tuna",
+						"Salmon roe",
+						"Haddock",
+						"Snapper",
+						"Crab cake",
+						"Lobster bisque",
+						"Deep fried calamari", 
+						"Takoyaki", 
+						"Scallops",
+						"Sea cucumber", 
+						"Oyster Rockefeller"
+);
 	
 	// Reference to main application
 	private Main mainApp;
@@ -42,6 +70,9 @@ public class POSController {
 	private void initialize(){
 		itemColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("item"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Item, Number>("price"));
+		
+		menuItemsBox.setValue("--Select Items--");
+		menuItemsBox.setItems(menuItemList);
 	}
 	
 	/**
@@ -94,6 +125,10 @@ public class POSController {
             alert.showAndWait();
             return 0;
 		}
+	}
+	//Add selected items from menu to the order table
+	@FXML
+	private void handleAddItem(ActionEvent event){
 	}
 	
 	/**
@@ -161,5 +196,21 @@ public class POSController {
 			alert.setContentText("There is nothing in the table to print.");
 			alert.showAndWait();
 		}
+	}
+	
+	//Gives the option to exit the program
+
+public void exitProgram(ActionEvent e){
+
+	Alert alert = new Alert(AlertType.CONFIRMATION);
+	alert.setTitle("Confirm Exit Application");
+	alert.setHeaderText("Confirm Exit Application");
+	alert.setContentText("Are you sure you want to exit the application?");
+
+	Optional<ButtonType> result = alert.showAndWait();
+	if (result.get() == ButtonType.OK){
+		Platform.exit();
+	} else {
+		
 	}
 }
