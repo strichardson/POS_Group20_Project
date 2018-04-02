@@ -50,6 +50,6 @@
 				<TextField fx:id="totalField" alignment="CENTER_RIGHT" editable="false" prefHeight="31.0" prefWidth="222.0" />
 			</children>
 		</VBox>
-      <ComboBox layoutX="14.0" layoutY="140.0" onAction="#handleMenuBox" prefWidth="150.0" />
+      <ComboBox fx:id="menuItemsBox" layoutX="14.0" layoutY="140.0" prefWidth="150.0" />
 	</children>
 </Pane>
