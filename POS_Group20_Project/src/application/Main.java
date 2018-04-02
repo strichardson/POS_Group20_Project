@@ -22,8 +22,6 @@ public class Main extends Application {
 	 * Constructor
 	 */
 	public Main(){
-		orderData.add(new Item("Jellied Eels", 50.0));
-		orderData.add(new Item("Takoyaki", 25.0));
 	}
 	
 	
