@@ -31,7 +31,8 @@ public class POSController {
 	private TextField totalField;
 	@FXML
 	private ComboBox<String> menuItemsBox;
-	
+	ObservableList<String> menuItemList = FXCollections
+				.observableArrayList("snake", "cat", "rat");
 	
 	// Reference to main application
 	private Main mainApp;
@@ -50,7 +51,9 @@ public class POSController {
 	private void initialize(){
 		itemColumn.setCellValueFactory(cellData -> cellData.getValue().itemProperty());
 		priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
-	
+		
+		menuItemsBox.setValue("--Select Items--");
+		menuItemsBox.setItems(menuItemList);
 	}
 
 	
@@ -60,6 +63,8 @@ public class POSController {
 		orderTable.setItems(mainApp.getmenuItemBox());
 	}
 	*/
+	
+	/*
 	@FXML
 	private void handleMenuBox(){
 		ObservableList<String> menuItemList = FXCollections
@@ -68,6 +73,8 @@ public class POSController {
 		menuItemsBox.setValue("--Select Items--");
 		menuItemsBox.setItems(menuItemList);
 	}
+	*/
+	
 	@FXML
 	private void handleTotal(){
 		ArrayList<Number> priceData = new ArrayList<>();
