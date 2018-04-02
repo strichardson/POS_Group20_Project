@@ -54,14 +54,8 @@
             <TextField fx:id="totalField" alignment="CENTER_RIGHT" editable="false" prefHeight="31.0" prefWidth="222.0" />
          </children>
       </VBox>
-<<<<<<< HEAD
       <ComboBox fx:id="menuItemsBox" layoutX="14.0" layoutY="89.0" prefHeight="31.0" prefWidth="276.0" />
       <Button fx:id="btnAddItem" layoutX="302.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleAddItem" text="Add" />
       <Button fx:id="exitApp" layoutX="14.0" layoutY="435.0" mnemonicParsing="false" onAction="#exitProgram" text="Exit" />
-=======
-      <ComboBox fx:id="menuItemsBox" layoutX="14.0" layoutY="140.0" prefWidth="150.0" />
-      <Button fx:id="btnAddItem" layoutX="234.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleAddItem" text="Add" />
-      <Button fx:id="exitApp" layoutX="60.0" layoutY="407.0" mnemonicParsing="false" onAction="#exitProgram" text="Exit" />
->>>>>>> d1add1fc457df7ffe0256828369527bffc71e7a1
 	</children>
 </Pane>

@@ -13,15 +13,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-<<<<<<< HEAD
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-=======
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
->>>>>>> d1add1fc457df7ffe0256828369527bffc71e7a1
 
 public class POSController {
 	@FXML
@@ -43,12 +38,7 @@ public class POSController {
 	@FXML
 	private ComboBox<String> menuItemsBox;
 	//populates the combo box
-<<<<<<< HEAD
 	ObservableList<String> menuItemList = FXCollections.observableArrayList(
-=======
-	ObservableList<String> menuItemList = FXCollections
-				.observableArrayList(
->>>>>>> d1add1fc457df7ffe0256828369527bffc71e7a1
 						"Jellied eels",
 						"Monkfish",
 						"Deep fried pomfret",
@@ -63,12 +53,7 @@ public class POSController {
 						"Takoyaki", 
 						"Scallops",
 						"Sea cucumber", 
-<<<<<<< HEAD
 						"Oyster Rockefeller");
-=======
-						"Oyster Rockefeller"
-);
->>>>>>> d1add1fc457df7ffe0256828369527bffc71e7a1
 	
 	// Reference to main application
 	private Main mainApp;
@@ -160,10 +145,6 @@ public class POSController {
             alert.showAndWait();
 		}
 	}
-	//Add selected items from menu to the order table
-	@FXML
-	private void handleAddItem(ActionEvent event){
-	}
 	
 	/**
 	 * Called when user presses the delete button.
@@ -230,7 +211,6 @@ public class POSController {
 		}
 	}
 	
-<<<<<<< HEAD
 	/**
 	 * Called when user presses the exit button.
 	 * Gives the option of exiting the program
@@ -249,21 +229,3 @@ public class POSController {
 		}
 	}
 }
-=======
-	//Gives the option to exit the program
-
-public void exitProgram(ActionEvent e){
-
-	Alert alert = new Alert(AlertType.CONFIRMATION);
-	alert.setTitle("Confirm Exit Application");
-	alert.setHeaderText("Confirm Exit Application");
-	alert.setContentText("Are you sure you want to exit the application?");
-
-	Optional<ButtonType> result = alert.showAndWait();
-	if (result.get() == ButtonType.OK){
-		Platform.exit();
-	} else {
-		
-	}
-}
->>>>>>> d1add1fc457df7ffe0256828369527bffc71e7a1
