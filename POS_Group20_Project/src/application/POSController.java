@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class POSController {
@@ -37,24 +36,31 @@ public class POSController {
 	}
 	
 	/**
-	 * Initializes controller class - called once fxml file has been loaded
+	 * Initializes controller class - called after fxml file has been loaded
 	 */
 	@FXML
 	private void initialize(){
-		itemColumn.setCellValueFactory(cellData -> cellData.getValue().itemProperty());
-		priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+		itemColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("item"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Item, Number>("price"));
 	}
 	
-	// called by Main application to give a reference back to itself
+	/**
+	 * Called by Main application to give a reference back to itself
+	 * @param mainApp
+	 */
 	public void setMainApp(Main mainApp){
 		this.mainApp = mainApp;
 		orderTable.setItems(mainApp.getOrderData());
 	}
 	
+	/**
+	 * Called when user presses the total button.
+	 */
 	@FXML
-	private void handleTotal(){
+	private double handleTotal(){
+		if(!orderTable.getItems().isEmpty()){
 		ArrayList<Number> priceData = new ArrayList<>();
-		DecimalFormat df2 = new DecimalFormat("#.00");
+		DecimalFormat df2 = new DecimalFormat("#.00");	// Keep numbers rounded to 2 decimal places
 		double subtotal = 0.0, tax = 0.0, total = 0.0;
 		
 		// Calculating sub-total - store all price values in an array list
@@ -72,18 +78,36 @@ public class POSController {
 		// Calculating total
 		total = subtotal + tax;
 		
+		// Set the text fields to the calculated values
 		subtotalField.setText(df2.format(subtotal));
 		taxField.setText(df2.format(tax));
 		totalField.setText(df2.format(total));
+		
+		return total;
+		}
+		else{
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("Empty Order");
+            alert.setHeaderText("No Items in Order");
+            alert.setContentText("Please add something to the order.");
+            alert.showAndWait();
+            return 0;
+		}
 	}
 	
+	/**
+	 * Called when user presses the delete button.
+	 */
 	@FXML
 	private void handleDeleteItem(){
 		int itemIndex = orderTable.getSelectionModel().getSelectedIndex();
 		if(itemIndex >= 0){
+			// Delete selected item and recalculate total
 			orderTable.getItems().remove(itemIndex);
 			handleTotal();
 		}
+		// Alert window is shown when no item in table is selected
 		else{
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(mainApp.getPrimaryStage());
@@ -94,16 +118,21 @@ public class POSController {
 		}
 	}
 	
+	/**
+	 * Called when user presses the reset button.
+	 */
 	@FXML
 	private void handleReset(){
 		if(!orderTable.getItems().isEmpty()){
+			// Clear table and all total fields
 			orderTable.getItems().clear();
 			subtotalField.clear();
 			taxField.clear();
 			totalField.clear();
 		}
+		// Shows alert window if table is already empty
 		else{
-			Alert alert = new Alert(AlertType.INFORMATION);
+			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(mainApp.getPrimaryStage());
 			alert.setTitle("Table Empty");
 			alert.setHeaderText("Table is Empty");
@@ -112,23 +141,25 @@ public class POSController {
 		}
 	}
 	
+	/**
+	 * Called when user presses receipt button.
+	 * Opens new window to show receipt.
+	 */
 	@FXML
 	private void handleReceipt(){
 		if(!orderTable.getItems().isEmpty()){
-			mainApp.showReceipt(orderTable);
+			double total;
+			total = handleTotal();
+			mainApp.showReceiptPane(orderTable, total);
 		}
+		// Show alert window if nothing is in the order table
 		else{
-			Alert alert = new Alert(AlertType.INFORMATION);
+			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(mainApp.getPrimaryStage());
-			alert.setTitle("Table Empty");
+			alert.setTitle("Nothing to Print");
 			alert.setHeaderText("Table is Empty");
-			alert.setContentText("Table is already empty.");
+			alert.setContentText("There is nothing in the table to print.");
 			alert.showAndWait();
 		}
-	}
-	
-	@FXML
-	private void handleItemPrint(){
-		
 	}
 }

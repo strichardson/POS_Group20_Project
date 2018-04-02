@@ -9,10 +9,18 @@ public class Item {
 	private StringProperty item;
 	private DoubleProperty price;
 	
+	/**
+	 * Default constructor
+	 */
 	public Item(){
 		this(null, 0.0);
 	}
 	
+	/**
+	 * Constructor with initial data
+	 * @param item
+	 * @param price
+	 */
 	public Item(String item, double price){
 		this.item = new SimpleStringProperty(item);
 		this.price = new SimpleDoubleProperty(price);
@@ -37,10 +45,5 @@ public class Item {
 	}
 	public DoubleProperty priceProperty(){
 		return price;
-	}
-	
-	@Override
-	public String toString(){
-		return item.get() + "\t\t $" + price.get();
 	}
 }

@@ -12,11 +12,9 @@ import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
 
 
-
 public class Main extends Application {
 	private Stage primaryStage;
 	private Pane root;
-	
 	
 	private ObservableList<Item> orderData = FXCollections.observableArrayList();
 	
@@ -24,14 +22,9 @@ public class Main extends Application {
 	 * Constructor
 	 */
 	public Main(){
-		// Sample data
-		orderData.add(new Item("Jellied Eels", 50.0));
-		orderData.add(new Item("Takoyaki", 25.0));
 	}
 	
-	/**
-	 * 
-	 */
+	
 	@Override
 	public void start(Stage primaryStage){
 		this.primaryStage = primaryStage;
@@ -44,6 +37,7 @@ public class Main extends Application {
 	 */
 	public void initRoot(){
 		try{
+			// Load FXML file and root layout
 			FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("PosDuPossin.fxml"));
             root = loader.load();
@@ -60,38 +54,49 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
 	/**
-	 * Opens receipt pane
+	 * Opens new window to show order receipt
+	 * @param orders
 	 */
-	public void showReceipt(TableView<Item> orders){
+	public void showReceiptPane(TableView<Item> orders, double total){
 		try{
+			// Load fxml file and receipt pane layout
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("ReceiptPane.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
+			AnchorPane pane = (AnchorPane) loader.load();
 			
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Receipt");
-			dialogStage.initModality(Modality.NONE);
-			dialogStage.initOwner(primaryStage);
-			Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-            /*
-            ReceiptController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
-            controller.printReceipt(orders);
-            */
-            dialogStage.showAndWait();
+			// Create dialogue stage
+			Stage dialogueStage = new Stage();
+			dialogueStage.setTitle("Receipt");
+			dialogueStage.initModality(Modality.NONE);
+			dialogueStage.initOwner(primaryStage);
+			Scene scene = new Scene(pane);
+			dialogueStage.setScene(scene);
+			
+			// Set controller
+			ReceiptController controller = loader.getController();
+			controller.printOrder(orders, total);
+			
+			// Show receipt window
+			dialogueStage.showAndWait();
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Returns observable list of Items
+	 * @return
+	 */
 	public ObservableList<Item> getOrderData(){
 		return orderData;
 	}
 	
+	/**
+	 * Returns the primary stage for the application
+	 * @return
+	 */
 	public Stage getPrimaryStage(){
 		return primaryStage;
 	}
