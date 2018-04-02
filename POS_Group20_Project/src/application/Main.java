@@ -22,6 +22,8 @@ public class Main extends Application {
 	 * Constructor
 	 */
 	public Main(){
+		orderData.add(new Item("Jellied Eels", 50.0));
+		orderData.add(new Item("Takoyaki", 25.0));
 	}
 	
 	
@@ -54,11 +56,12 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * Opens new window to show order receipt
 	 * @param orders
 	 */
-	public void showReceiptPane(TableView<Item> orders, double total){
+	public void showReceiptPane(TableView<Item> orders){
 		try{
 			// Load fxml file and receipt pane layout
 			FXMLLoader loader = new FXMLLoader();
@@ -75,7 +78,7 @@ public class Main extends Application {
 			
 			// Set controller
 			ReceiptController controller = loader.getController();
-			controller.printOrder(orders, total);
+			controller.printOrder(orders);
 			
 			// Show receipt window
 			dialogueStage.showAndWait();

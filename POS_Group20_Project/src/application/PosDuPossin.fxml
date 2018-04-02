@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.ComboBox?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.POSController">
    <children>
@@ -30,28 +31,6 @@
             <Button mnemonicParsing="false" onAction="#handleReceipt" prefHeight="40.0" prefWidth="100.0" text="Receipt" />
          </children>
       </HBox>
-      <VBox layoutX="14.0" layoutY="89.0" prefHeight="263.0" prefWidth="160.0" spacing="10.0">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Jellied Eels" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Monkfish" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Deep Fried Pomfret" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Marinated Swordfish" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Tuna" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Salmon Roe" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Haddock" />
-         </children>
-      </VBox>
-      <VBox layoutX="186.0" layoutY="89.0" prefHeight="277.0" prefWidth="160.0" spacing="10.0">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Lobster Bisque" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Crab Cake" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Snapper" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Deep Fried Calamari" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Takoyaki" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Scallops" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Sea Cucumber" />
-         </children>
-      </VBox>
       <TableView fx:id="orderTable" layoutX="375.0" layoutY="89.0" prefHeight="235.0" prefWidth="306.0">
         <columns>
           <TableColumn fx:id="itemColumn" prefWidth="75.0" text="Item" />
@@ -75,5 +54,8 @@
             <TextField fx:id="totalField" alignment="CENTER_RIGHT" editable="false" prefHeight="31.0" prefWidth="222.0" />
          </children>
       </VBox>
-   </children>
+      <ComboBox fx:id="menuItemsBox" layoutX="14.0" layoutY="89.0" prefHeight="31.0" prefWidth="276.0" />
+      <Button fx:id="btnAddItem" layoutX="302.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleAddItem" text="Add" />
+      <Button fx:id="exitApp" layoutX="14.0" layoutY="435.0" mnemonicParsing="false" onAction="#exitProgram" text="Exit" />
+	</children>
 </Pane>

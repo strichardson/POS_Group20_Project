@@ -2,6 +2,7 @@ package application;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,6 +11,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 
 public class POSController {
 	@FXML
@@ -24,7 +31,29 @@ public class POSController {
 	private TextField taxField;
 	@FXML
 	private TextField totalField;
-	
+	@FXML
+	private Button btnAddItem;
+	@FXML
+	private Button exitApp;
+	@FXML
+	private ComboBox<String> menuItemsBox;
+	//populates the combo box
+	ObservableList<String> menuItemList = FXCollections.observableArrayList(
+						"Jellied eels",
+						"Monkfish",
+						"Deep fried pomfret",
+						"Marinated swordfish",
+						"Tuna",
+						"Salmon roe",
+						"Haddock",
+						"Snapper",
+						"Crab cake",
+						"Lobster bisque",
+						"Deep fried calamari", 
+						"Takoyaki", 
+						"Scallops",
+						"Sea cucumber", 
+						"Oyster Rockefeller");
 	
 	// Reference to main application
 	private Main mainApp;
@@ -42,6 +71,9 @@ public class POSController {
 	private void initialize(){
 		itemColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("item"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Item, Number>("price"));
+		
+		menuItemsBox.setValue("--Select Items--");
+		menuItemsBox.setItems(menuItemList);
 	}
 	
 	/**
@@ -57,7 +89,7 @@ public class POSController {
 	 * Called when user presses the total button.
 	 */
 	@FXML
-	private double handleTotal(){
+	private void handleTotal(){
 		if(!orderTable.getItems().isEmpty()){
 		ArrayList<Number> priceData = new ArrayList<>();
 		DecimalFormat df2 = new DecimalFormat("#.00");	// Keep numbers rounded to 2 decimal places
@@ -82,8 +114,6 @@ public class POSController {
 		subtotalField.setText(df2.format(subtotal));
 		taxField.setText(df2.format(tax));
 		totalField.setText(df2.format(total));
-		
-		return total;
 		}
 		else{
 			Alert alert = new Alert(AlertType.WARNING);
@@ -92,7 +122,27 @@ public class POSController {
             alert.setHeaderText("No Items in Order");
             alert.setContentText("Please add something to the order.");
             alert.showAndWait();
-            return 0;
+		}
+	}
+	
+	/**
+	 * Called when user presses the add button
+	 * Add selected items from menu to the order table
+	 */
+	@FXML
+	private void handleAddItem(){
+		String itemName = menuItemsBox.getSelectionModel().getSelectedItem();
+		if(itemName != "--Select Items--"){
+			Item newItem = new Item(itemName, 0.00);
+			orderTable.getItems().add(newItem);
+		}
+		else{
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Item Selected");
+            alert.setContentText("Please select an item from the list to add.");
+            alert.showAndWait();
 		}
 	}
 	
@@ -148,9 +198,7 @@ public class POSController {
 	@FXML
 	private void handleReceipt(){
 		if(!orderTable.getItems().isEmpty()){
-			double total;
-			total = handleTotal();
-			mainApp.showReceiptPane(orderTable, total);
+			mainApp.showReceiptPane(orderTable);
 		}
 		// Show alert window if nothing is in the order table
 		else{
@@ -160,6 +208,24 @@ public class POSController {
 			alert.setHeaderText("Table is Empty");
 			alert.setContentText("There is nothing in the table to print.");
 			alert.showAndWait();
+		}
+	}
+	
+	/**
+	 * Called when user presses the exit button.
+	 * Gives the option of exiting the program
+	 */
+	public void exitProgram(){
+		// Show exit confirmation window
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirm Exit Application");
+		alert.setHeaderText("Confirm Exit Application");
+		alert.setContentText("Are you sure you want to exit the application?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		// Exit program if user presses ok
+		if (result.get() == ButtonType.OK){
+			Platform.exit();
 		}
 	}
 }
