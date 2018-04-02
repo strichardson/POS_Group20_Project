@@ -4,13 +4,14 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 
 public class Item {
 	private StringProperty item;
 	private DoubleProperty price;
 	
-	public Item(){
-		this(null, 0.0);
+	public Item(ObservableList<Item> menuItemsList){
+		//this(null, 0.0);
 	}
 	
 	public Item(String item, double price){
@@ -18,6 +19,10 @@ public class Item {
 		this.price = new SimpleDoubleProperty(price);
 	}
 	
+//	public Item1(ObservableList<Item> menuItemsList) {
+		// TODO Auto-generated constructor stub
+//	}
+
 	public String getItem(){
 		return item.get();
 	}

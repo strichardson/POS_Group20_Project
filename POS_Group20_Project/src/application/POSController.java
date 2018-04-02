@@ -1,6 +1,7 @@
 package application;
 
 import java.text.DecimalFormat;
+
 import java.util.ArrayList;
 
 import javafx.fxml.FXML;
@@ -11,6 +12,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ComboBox;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 public class POSController {
 	@FXML
@@ -25,6 +29,8 @@ public class POSController {
 	private TextField taxField;
 	@FXML
 	private TextField totalField;
+	@FXML
+	private ComboBox<String> menuItemsBox;
 	
 	
 	// Reference to main application
@@ -34,6 +40,7 @@ public class POSController {
 	 * Constructor - Called before initialize() method
 	 */
 	public POSController(){
+		
 	}
 	
 	/**
@@ -43,14 +50,24 @@ public class POSController {
 	private void initialize(){
 		itemColumn.setCellValueFactory(cellData -> cellData.getValue().itemProperty());
 		priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+	
 	}
+
 	
 	// called by Main application to give a reference back to itself
-	public void setMainApp(Main mainApp){
+/*	public void setMainApp(Main mainApp){
 		this.mainApp = mainApp;
-		orderTable.setItems(mainApp.getOrderData());
+		orderTable.setItems(mainApp.getmenuItemBox());
 	}
-	
+	*/
+	@FXML
+	private void handleMenuBox(){
+		ObservableList<String> menuItemList = FXCollections
+				.observableArrayList("snake", "cat", "rat");
+		
+		menuItemsBox.setValue("--Select Items--");
+		menuItemsBox.setItems(menuItemList);
+	}
 	@FXML
 	private void handleTotal(){
 		ArrayList<Number> priceData = new ArrayList<>();

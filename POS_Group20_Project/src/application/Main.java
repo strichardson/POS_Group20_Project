@@ -1,15 +1,21 @@
 package application;
 
+import java.util.List;
+
 import javafx.application.Application;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+//import javafx.scene.control.ComboBox;
 
 
 
@@ -17,16 +23,22 @@ public class Main extends Application {
 	private Stage primaryStage;
 	private Pane root;
 	
+	//private ObservableList<String> menuItemList = FXCollections
+		//	.observableArrayList("snake", "cat", "rat");
 	
-	private ObservableList<Item> orderData = FXCollections.observableArrayList();
+//	private ObservableList<Item> menuItemsList = FXCollections.observableArrayList();
 	
+	@FXML
+	private ComboBox<String> menuItemsBox;
 	/**
 	 * Constructor
 	 */
+	
 	public Main(){
 		// Sample data
-		orderData.add(new Item("Jellied Eels", 50.0));
-		orderData.add(new Item("Takoyaki", 25.0));
+		//orderData.add(new Item("Jellied Eels", 50.0));
+		//orderData.add(new Item("Takoyaki", 25.0));
+		
 	}
 	
 	/**
@@ -50,7 +62,7 @@ public class Main extends Application {
 
             // Give controller access to main application
             POSController controller = loader.getController();
-            controller.setMainApp(this);
+           // controller.setMainApp(this);
             
             // Show the scene containing the root layout.
             Scene scene = new Scene(root);
@@ -88,9 +100,9 @@ public class Main extends Application {
 		}
 	}
 	
-	public ObservableList<Item> getOrderData(){
-		return orderData;
-	}
+	//public ObservableList<Item> getOrderData(){
+		//return orderData;
+	//}
 	
 	public Stage getPrimaryStage(){
 		return primaryStage;
@@ -100,3 +112,9 @@ public class Main extends Application {
 		launch(args);
 	}
 }
+//added last
+	/*public ObservableList<Item> getmenuItemBox() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}*/
