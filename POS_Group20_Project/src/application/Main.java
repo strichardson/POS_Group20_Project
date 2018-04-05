@@ -1,5 +1,10 @@
 package application;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +20,10 @@ import javafx.fxml.FXMLLoader;
 public class Main extends Application {
 	private Stage primaryStage;
 	private Pane root;
+	public Connection conn;
+	Statement statement;
+	
+	
 	
 	private ObservableList<Item> orderData = FXCollections.observableArrayList();
 	
@@ -27,9 +36,11 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage){
+		
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Du Poisson");
 		initRoot();
+		
 	}
 	
 	/**
@@ -103,6 +114,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		launch(args);
-	}
+		launch(args); }
+			
+
 }

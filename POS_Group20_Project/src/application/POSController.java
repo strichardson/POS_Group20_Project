@@ -1,5 +1,10 @@
 package application;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -37,23 +42,15 @@ public class POSController {
 	private Button exitApp;
 	@FXML
 	private ComboBox<String> menuItemsBox;
+	private Connection conn;
+	private Statement stm;
+	private ResultSet rs;
+	
 	//populates the combo box
-	ObservableList<String> menuItemList = FXCollections.observableArrayList(
-						"Jellied eels",
-						"Monkfish",
-						"Deep fried pomfret",
-						"Marinated swordfish",
-						"Tuna",
-						"Salmon roe",
-						"Haddock",
-						"Snapper",
-						"Crab cake",
-						"Lobster bisque",
-						"Deep fried calamari", 
-						"Takoyaki", 
-						"Scallops",
-						"Sea cucumber", 
-						"Oyster Rockefeller");
+	
+	ObservableList<String> menuItemList = FXCollections.observableArrayList();
+			
+						
 	
 	// Reference to main application
 	private Main mainApp;
@@ -62,6 +59,7 @@ public class POSController {
 	 * Constructor - Called before initialize() method
 	 */
 	public POSController(){
+	
 	}
 	
 	/**
@@ -71,9 +69,18 @@ public class POSController {
 	private void initialize(){
 		itemColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("item"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Item, Number>("price"));
-		
-		menuItemsBox.setValue("--Select Items--");
+		try {
+			conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\smart\\Desktop\\project\\POS_Group20_Project\\databases.db");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Something went wrong: " + e.getMessage());
+		}
+		//menuItemsBox.setValue("--Select Items--");
+		fillComboBox();	
 		menuItemsBox.setItems(menuItemList);
+		
+		
+		
 	}
 	
 	/**
@@ -83,6 +90,29 @@ public class POSController {
 	public void setMainApp(Main mainApp){
 		this.mainApp = mainApp;
 		orderTable.setItems(mainApp.getOrderData());
+	}
+	
+	/** Fill combo box
+	 * 
+	 */
+	public void fillComboBox(){
+		
+			
+		String query = "select productDescr from poisson_price";
+		
+		try {
+			conn.createStatement();
+			stm =conn.createStatement();
+			rs = stm.executeQuery(query);
+			while (rs.next()){
+				menuItemList.add(rs.getString("productDescr"));
+			}
+			stm.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Something went wrong: " + e.getMessage());
+		}
 	}
 	
 	/**
@@ -133,8 +163,25 @@ public class POSController {
 	private void handleAddItem(){
 		String itemName = menuItemsBox.getSelectionModel().getSelectedItem();
 		if(itemName != "--Select Items--"){
-			Item newItem = new Item(itemName, 0.00);
-			orderTable.getItems().add(newItem);
+			String query = "select productPrice from poisson_price where productDescr = '" + itemName + "'";
+			
+			try {
+				conn.createStatement();
+				stm =conn.createStatement();
+				rs = stm.executeQuery(query);
+				Item newItem = new Item(itemName, rs.getDouble("productPrice"));
+				orderTable.getItems().add(newItem);
+				//while (rs.next()){
+					//menuItemList.add(rs.g("productPrice"));
+				//}
+				stm.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Something went wrong: " + e.getMessage());
+			}
+				
+			
 		}
 		else{
 			Alert alert = new Alert(AlertType.WARNING);
