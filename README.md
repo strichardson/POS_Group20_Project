@@ -37,7 +37,7 @@ Returns the observable list of items
 POS Controller Class
 private void initialize()
 Connects the database and Initializes the Controller class, setting values for the item and price columns of the order table.
-Calls the method fillComboBox. (Described below)
+Calls the method fillComboBox(Described below). *(In order for connection to the database to work, when file is downloaded, select the database file and copy the file path into this function, following the colon of the jdbc)
 
 public void fillComboBox()
 Populates the ComboBox with items and prices from the database.
