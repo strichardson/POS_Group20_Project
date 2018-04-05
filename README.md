@@ -1,6 +1,7 @@
 # POS_Group20_Project
 Project Title: POS Du Poussin
 The Point of Sales system that we created will allow users to input information via buttons to create an order list, e.g. Tuna. It enables them to input as many items as they desire.. With the implementation of a database, we can store a certain amount of item and determine if once a button is clicked, if that item is added to the list or not. The system is comprised of a combo Box containing 15 items, exit, reset, total, and receipt buttons, as well as a database to store items and orders. The total button displays the subtotal, tax amount, and final total. The receipt button opens a receipt pane with the order items and calculations of the total. This software is to be used by management and staff of a very fancy seafood restaurant which requires an inventory management sales system that allows there to be an input and tracking of item information. It enables them to take orders, perform calculations and provide guests with receipts.
+
 Prerequisites
 The required software to build a working example of this project is as follows:
 Java IDE 
@@ -10,16 +11,17 @@ JDBC Driver
 Java FX
 
 Getting Started
-Step
-Run applications 
-Select desired item from ComboBox 
-Click add for the item to be added to the Order Table(press add to gain quantity)
-Continue adding items as needed
-You have the option to delete an item by selecting an item and pressing the delete button
-Reset the order table by selecting Reset
-To calculate the total click Total
-To obtain the Receipt click Receipt
-Exit button to exit 
+
+Steps
+1.Run applications 
+2.Select desired item from ComboBox 
+3Click add for the item to be added to the Order Table(press add to gain quantity)
+ continue adding items as needed
+4.You have the option to delete an item by selecting an item and pressing the delete button
+5.Reset the order table by selecting Reset
+6.To calculate the total click Total
+7.To obtain the Receipt click Receipt
+8.Exit button to exit 
 
 
 Description of Methods:
