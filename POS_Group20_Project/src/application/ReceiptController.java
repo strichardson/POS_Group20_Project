@@ -1,3 +1,7 @@
+/* COIS 2240_ PROJECT_GROUP20
+* Authors: Maggie Kikkert, Stednisha Richardson, Micheala Palmer, Jason McNab
+*Date: April 6th, 2018
+*/
 package application;
 
 import java.text.DecimalFormat;
