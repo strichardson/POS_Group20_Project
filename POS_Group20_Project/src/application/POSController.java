@@ -69,13 +69,14 @@ public class POSController {
 	private void initialize(){
 		itemColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("item"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Item, Number>("price"));
-		try {
+		/** connection to database **/
+        try {
 			conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\smart\\Desktop\\project\\POS_Group20_Project\\databases.db");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Something went wrong: " + e.getMessage());
 		}
-		//menuItemsBox.setValue("--Select Items--");
+		menuItemsBox.setValue("--Select Items--");
 		fillComboBox();	
 		menuItemsBox.setItems(menuItemList);
 		
@@ -96,7 +97,7 @@ public class POSController {
 	 * 
 	 */
 	public void fillComboBox(){
-		
+		/* select query connects to database and populates the combo box*/
 			
 		String query = "select productDescr from poisson_price";
 		
@@ -171,9 +172,7 @@ public class POSController {
 				rs = stm.executeQuery(query);
 				Item newItem = new Item(itemName, rs.getDouble("productPrice"));
 				orderTable.getItems().add(newItem);
-				//while (rs.next()){
-					//menuItemList.add(rs.g("productPrice"));
-				//}
+				
 				stm.close();
 				rs.close();
 			} catch (SQLException e) {
