@@ -1,3 +1,9 @@
+/* COIS2240_Project_Group20
+* Authors: Maggie Kikkert, Stednisha Richardson, Micheala Palmer, Jason Mcnab
+*Date: April 6th 2018	
+*/
+
+
 package application;
 
 import java.sql.Connection;
