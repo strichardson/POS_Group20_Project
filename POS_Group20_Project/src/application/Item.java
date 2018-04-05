@@ -1,3 +1,8 @@
+/** COIS 2240_Project_Group20
+* Maggie Kikkert, Stednisha Richardson, Micheala Palmer, Jason McNab
+*April 6th , 2018 
+*/
+
 package application;
 
 import javafx.beans.property.DoubleProperty;
